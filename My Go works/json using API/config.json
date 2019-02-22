@@ -1,0 +1,43 @@
+{
+	"trace_id": "1ca708ec05f714dac0f44c25329dec6b",
+	"timestamp": 1550658836091037,
+	"result": "HTTP 5xx",
+	"metadata": {
+		"service": {
+			"name": "my-app-01"
+		},
+		"version": null,
+		"language": {
+			"version": "2.7.15rc1",
+			"name": "python"
+		},
+		"agent": {
+			"version": "4.1.0",
+			"name": "python"
+		},
+		"framework": {
+			"version": "1.0.2",
+			"name": "flask"
+		}
+	},
+	"request": {
+		"url": "http://localhost:5000/test",
+		"body": "{'somekey': 'somevalue'}",
+		"headers": {
+			"content-length": "24",
+			"content-type": "application/json",
+			"host": "localhost:5000",
+			"accept": "*/*",
+			"user-agent": "curl/7.58.0"
+		},
+		"method": "POST"
+	},
+	"response": {
+		"status_code": 500,
+		"headers": {
+			"Content-Length": "9",
+			"Content-Type": "text/html; charset=utf-8"
+		}
+	},
+	"duration": 1.600027084350586
+}
