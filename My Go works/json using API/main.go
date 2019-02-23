@@ -2,14 +2,13 @@ package main
 
 import (
 	"fmt"
-	"encoding/json"
 	"log"
-	//"math/rand"
 	"net/http"
-	//"strconv"
-        "os"
+	"encoding/json"
 	"github.com/gorilla/mux"
+	"os"
 )
+
 
 type Config struct {
 	
@@ -28,7 +27,6 @@ type Config struct {
 	
 }
 
-
 func LoadConfiguration(filename string) (Config, error) {
     var config Config
     configFile, err := os.Open(filename)
@@ -40,25 +38,21 @@ func LoadConfiguration(filename string) (Config, error) {
     jsonParser.Decode(&config)
     return config, err
 }
-  
 
-func getJson(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+
+func AlJsonEndPoint(w http.ResponseWriter, r *http.Request) {
 	
-	//json.NewEncoder(w).Encode(books)
-	
-	fmt.Println("start")
 	config, _ :=LoadConfiguration("config.json")
-	fmt.Println(config)
+	fmt.Fprintln(w,config)
 }
-
 
 
 
 func main() {
-
-        r := mux.NewRouter()
-r.HandleFunc("/jsn", getJson).Methods("GET")
-log.Fatal(http.ListenAndServe(":8000", r))	
-}
+	r := mux.NewRouter()
+	r.HandleFunc("/view", AlJsonEndPoint).Methods("GET")
 	
+	if err := http.ListenAndServe(":8000", r); err != nil {
+		log.Fatal(err)
+	}
+}
